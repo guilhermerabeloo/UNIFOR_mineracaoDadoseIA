@@ -2,7 +2,7 @@ import pandas as pd
 import os
 
 def main_etl():
-    # EXTRACT
+# EXTRACT
     pasta_raiz = os.path.dirname(os.path.abspath(__file__))
     pasta_source = os.path.join(pasta_raiz, '..', '..', 'data', 'raw', 'EstacoesClimaticas')
 
@@ -18,7 +18,7 @@ def main_etl():
     
     
     
-    # TRANSFORM
+# TRANSFORM
     estacoes_climaticas = pd.concat(dfs, ignore_index=True)
     estacoes_climaticas = estacoes_climaticas.rename(columns={
         'Data': 'data',
@@ -51,7 +51,7 @@ def main_etl():
 
 
 
-    # LOAD
+# LOAD
     pasta_sink = os.path.join(pasta_raiz, '..', '..', 'data', 'silver', 'EstacoesClimaticas', 'estacoes_climaticas.csv')
     pasta_sink = os.path.abspath(pasta_sink)
 

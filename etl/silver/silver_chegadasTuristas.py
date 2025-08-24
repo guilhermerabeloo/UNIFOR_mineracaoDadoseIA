@@ -2,7 +2,7 @@ import pandas as pd
 import os
 
 def main_etl():
-    # EXTRACT
+# EXTRACT
     pasta_raiz = os.path.dirname(os.path.abspath(__file__))
     pasta_source = os.path.join(pasta_raiz, '..', '..', 'data', 'raw', 'ChegadaTuristasInternacionais')
 
@@ -24,8 +24,8 @@ def main_etl():
             dfs_acumulados.append(df)
             
             
-    # TRANSFORM
-        # Tratando arquivos no padrao de daos fechados
+# TRANSFORM
+    # Tratando arquivos no padrao de daos fechados
     chegadas_turistas_fechados = pd.concat(dfs_fechados, ignore_index=True)
     chegadas_turistas_fechados = chegadas_turistas_fechados.rename(columns={
         'Continente': 'continente',
@@ -42,7 +42,7 @@ def main_etl():
         'Chegadas': 'chegadas'
     })
 
-        # Tratando arquivos no padrao de daos acumulados
+    # Tratando arquivos no padrao de daos acumulados
     chegadas_turistas_acumulados = pd.concat(dfs_acumulados, ignore_index=True)
     chegadas_turistas_acumulados = chegadas_turistas_acumulados.rename(columns={
                 'Via_de_acesso': 'via',
@@ -53,14 +53,14 @@ def main_etl():
                 'Chegadas': 'chegadas'
             })
 
-            # Adicionando coluna continente aos dados acumulados
+        # Adicionando coluna continente aos dados acumulados
     map_continente = chegadas_turistas_fechados[['continente', 'pais']].drop_duplicates()
     chegadas_turistas_acumulados = chegadas_turistas_acumulados.merge(map_continente, on='pais', how='left')
 
-        # Tratando df final
+    # Tratando df final
     chegadas_turistas = pd.concat([chegadas_turistas_fechados, chegadas_turistas_acumulados], ignore_index=True)
 
-            # Adicionando coluna de data
+        # Adicionando coluna de data
     map_meses = {
         'janeiro': 1,
         'fevereiro': 2,
@@ -78,11 +78,11 @@ def main_etl():
     chegadas_turistas['num_mes'] = chegadas_turistas['mes'].map(lambda x: map_meses.get(x.lower(), None))
     chegadas_turistas['data'] = pd.to_datetime(dict(year=chegadas_turistas['ano'], month=chegadas_turistas['num_mes'], day=1))
 
-            # Mantendo apenas as colunas necessarias
+        # Mantendo apenas as colunas necessarias
     chegadas_turistas = chegadas_turistas.drop(columns=['cod_continente', 'cod_pais', 'cod_uf', 'cod_mes', 'num_mes'])
 
 
-    # LOAD
+# LOAD
 
     pasta_sink = os.path.join(pasta_raiz, '..', '..', 'data', 'silver', 'ChegadaTuristasInternacionais', 'chegadas_turistas.csv')
     pasta_sink = os.path.abspath(pasta_sink)

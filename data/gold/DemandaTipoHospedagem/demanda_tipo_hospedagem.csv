@@ -1,0 +1,121 @@
+data;tipo_hospedagem;demanda
+2019-01-01;Extra Hoteleira;240,513.69
+2019-02-01;Extra Hoteleira;130,145.84
+2019-03-01;Extra Hoteleira;113,362.39
+2019-04-01;Extra Hoteleira;94,884.16
+2019-05-01;Extra Hoteleira;80,013.11
+2019-06-01;Extra Hoteleira;100,364.65
+2019-07-01;Extra Hoteleira;199,394.51
+2019-08-01;Extra Hoteleira;101,298.74
+2019-09-01;Extra Hoteleira;96,670.66
+2019-10-01;Extra Hoteleira;137,221.65
+2019-11-01;Extra Hoteleira;161,159.69
+2019-12-01;Extra Hoteleira;177,828.03
+2019-01-01;Hoteleira;276,597.31
+2019-02-01;Hoteleira;161,984.16
+2019-03-01;Hoteleira;140,634.86
+2019-04-01;Hoteleira;128,156.95
+2019-05-01;Hoteleira;116,816.52
+2019-06-01;Hoteleira;144,601.60
+2019-07-01;Hoteleira;235,360.49
+2019-08-01;Hoteleira;174,616.24
+2019-09-01;Hoteleira;162,335.67
+2019-10-01;Hoteleira;165,656.48
+2019-11-01;Hoteleira;173,019.09
+2019-12-01;Hoteleira;196,184.39
+2020-01-01;Extra Hoteleira;249,629.76
+2020-02-01;Extra Hoteleira;131,794.16
+2020-03-01;Extra Hoteleira;60,481.62
+2020-04-01;Extra Hoteleira;1,785.75
+2020-05-01;Extra Hoteleira;2,971.08
+2020-06-01;Extra Hoteleira;4,209.50
+2020-07-01;Extra Hoteleira;21,349.57
+2020-08-01;Extra Hoteleira;3,338.01
+2020-09-01;Extra Hoteleira;8,851.35
+2020-10-01;Extra Hoteleira;56,074.96
+2020-11-01;Extra Hoteleira;50,059.72
+2020-12-01;Extra Hoteleira;49,245.34
+2020-01-01;Hoteleira;283,512.24
+2020-02-01;Hoteleira;168,223.84
+2020-03-01;Hoteleira;85,787.26
+2020-04-01;Hoteleira;8,612.00
+2020-05-01;Hoteleira;9,397.00
+2020-06-01;Hoteleira;15,352.00
+2020-07-01;Hoteleira;57,193.73
+2020-08-01;Hoteleira;68,846.50
+2020-09-01;Hoteleira;76,297.77
+2020-10-01;Hoteleira;46,271.00
+2020-11-01;Hoteleira;69,907.00
+2020-12-01;Hoteleira;94,306.66
+2021-01-01;Extra Hoteleira;105,965.79
+2021-02-01;Extra Hoteleira;56,269.30
+2021-03-01;Extra Hoteleira;27,265.53
+2021-04-01;Extra Hoteleira;25,744.83
+2021-05-01;Extra Hoteleira;39,056.82
+2021-06-01;Extra Hoteleira;56,000.99
+2021-07-01;Extra Hoteleira;96,113.07
+2021-08-01;Extra Hoteleira;70,860.46
+2021-09-01;Extra Hoteleira;78,530.62
+2021-10-01;Extra Hoteleira;80,589.18
+2021-11-01;Extra Hoteleira;69,592.75
+2021-12-01;Extra Hoteleira;90,190.56
+2021-01-01;Hoteleira;158,948.69
+2021-02-01;Hoteleira;84,403.96
+2021-03-01;Hoteleira;40,898.30
+2021-04-01;Hoteleira;38,617.24
+2021-05-01;Hoteleira;58,585.23
+2021-06-01;Hoteleira;84,001.49
+2021-07-01;Hoteleira;144,169.60
+2021-08-01;Hoteleira;106,290.68
+2021-09-01;Hoteleira;117,795.93
+2021-10-01;Hoteleira;120,883.77
+2021-11-01;Hoteleira;104,389.13
+2021-12-01;Hoteleira;135,285.83
+2022-01-01;Extra Hoteleira;146,966.96
+2022-02-01;Extra Hoteleira;103,173.13
+2022-03-01;Extra Hoteleira;118,787.61
+2022-04-01;Extra Hoteleira;108,313.94
+2022-05-01;Extra Hoteleira;87,346.07
+2022-06-01;Extra Hoteleira;103,412.31
+2022-07-01;Extra Hoteleira;120,158.20
+2022-08-01;Extra Hoteleira;95,450.07
+2022-09-01;Extra Hoteleira;96,886.48
+2022-10-01;Extra Hoteleira;115,813.69
+2022-11-01;Extra Hoteleira;91,787.46
+2022-12-01;Extra Hoteleira;100,683.19
+2022-01-01;Hoteleira;202,954.38
+2022-02-01;Hoteleira;142,477.19
+2022-03-01;Hoteleira;164,040.03
+2022-04-01;Hoteleira;149,576.40
+2022-05-01;Hoteleira;120,620.77
+2022-06-01;Hoteleira;142,807.47
+2022-07-01;Hoteleira;165,932.75
+2022-08-01;Hoteleira;131,812.00
+2022-09-01;Hoteleira;129,571.52
+2022-10-01;Hoteleira;116,873.31
+2022-11-01;Hoteleira;107,456.54
+2022-12-01;Hoteleira;150,927.81
+2023-01-01;Extra Hoteleira;158,374.40
+2023-02-01;Extra Hoteleira;111,107.64
+2023-03-01;Extra Hoteleira;122,453.06
+2023-04-01;Extra Hoteleira;116,158.97
+2023-05-01;Extra Hoteleira;90,839.92
+2023-06-01;Extra Hoteleira;109,868.19
+2023-07-01;Extra Hoteleira;128,539.55
+2023-08-01;Extra Hoteleira;99,863.50
+2023-09-01;Extra Hoteleira;103,205.21
+2023-10-01;Extra Hoteleira;115,046.29
+2023-11-01;Extra Hoteleira;91,174.03
+2023-12-01;Extra Hoteleira;113,745.12
+2023-01-01;Hoteleira;209,043.01
+2023-02-01;Hoteleira;151,738.20
+2023-03-01;Hoteleira;170,273.56
+2023-04-01;Hoteleira;157,204.79
+2023-05-01;Hoteleira;125,445.60
+2023-06-01;Hoteleira;148,662.58
+2023-07-01;Hoteleira;172,404.13
+2023-08-01;Hoteleira;138,534.41
+2023-09-01;Hoteleira;135,920.53
+2023-10-01;Hoteleira;122,716.97
+2023-11-01;Hoteleira;111,969.72
+2023-12-01;Hoteleira;158,021.41

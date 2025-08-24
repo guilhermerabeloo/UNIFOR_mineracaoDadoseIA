@@ -3,7 +3,7 @@ import numpy as np
 import os
 
 def main_etl():
-    # EXTRACT
+# EXTRACT
     pasta_raiz = os.path.dirname(os.path.abspath(__file__))
     pasta_raw = os.path.join(pasta_raiz, '..', '..', 'data', 'raw', 'OfertaHoteleiraGrandeFor')
 
@@ -42,12 +42,12 @@ def main_etl():
         
             
             
-    # TRANSFORM
+# TRANSFORM
     oferta_hoteleira = pd.concat(dfs, ignore_index=True)
 
     
     
-    # LOAD
+# LOAD
     pasta_sink = os.path.abspath(os.path.join(pasta_raiz, '..', '..', 'data', 'silver', 'OfertaHoteleira', 'oferta_hoteleira.csv'))
     oferta_hoteleira.to_csv(pasta_sink, sep=';', index=False)
     

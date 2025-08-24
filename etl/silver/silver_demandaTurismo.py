@@ -2,12 +2,11 @@ import pandas as pd
 import os
 
 def main_etl():
-    # EXTRACT
+# EXTRACT
     pasta_raiz = os.path.dirname(os.path.abspath(__file__))
     pasta_raw = os.path.join(pasta_raiz, '..', '..', 'data', 'raw', 'DemandaTuristicaCeara')
 
     dfs_demanda = []
-    dfs_origem_demanda = []
     dfs_motivo_viagens = []
     dfs_sexo = []
     dfs_hospedes_faixa_etaria = []
@@ -38,13 +37,6 @@ def main_etl():
             df_demanda['ano'] = ano
             dfs_demanda.append(df_demanda)
             
-            # mantem colunas de origem da demanda(prefixo abaixo)
-            prefixo_col_origem_demanda = 'Demanda turística via Fortaleza - '
-            colunas_origem_demanda = [c for c in df.columns if prefixo_col_origem_demanda in c and c.count('-') > 1]
-            df_origem_demanda = df[colunas_origem_demanda].copy()
-            df_origem_demanda['ano'] = ano
-            dfs_origem_demanda.append(df_origem_demanda)
-            
             # mantem colunas com motivos para as viagens (prefixo abaixo)
             prefixo_col_motivo_viagens = 'Viagem para '
             colunas_motivo_viagens = [c for c in df.columns if prefixo_col_motivo_viagens in c and c.count('-') > 1]
@@ -68,21 +60,17 @@ def main_etl():
             
 
     
-    # TRANSFORM
+# TRANSFORM
     demanda = pd.concat(dfs_demanda, ignore_index=True)
-    origem_demanda = pd.concat(dfs_origem_demanda, ignore_index=True)
     motivo_viagens = pd.concat(dfs_motivo_viagens, ignore_index=True)
     sexo = pd.concat(dfs_sexo, ignore_index=True)
     hospedes_faixa_etaria = pd.concat(dfs_hospedes_faixa_etaria, ignore_index=True)
     
 
 
-    # LOAD
-    pasta_sink = os.path.abspath(os.path.join(pasta_raiz, '..', '..', 'data', 'silver', 'DemandaTuristica', 'demanda_turistica.csv'))
+# LOAD
+    pasta_sink = os.path.abspath(os.path.join(pasta_raiz, '..', '..', 'data', 'silver', 'DemandaTipoHospedagem', 'demanda_tipo_hospedagem.csv'))
     demanda.to_csv(pasta_sink, sep=';', index=False)
-    
-    pasta_sink = os.path.abspath(os.path.join(pasta_raiz, '..', '..', 'data', 'silver', 'DemandaOrigem', 'demanda_origem.csv'))
-    origem_demanda.to_csv(pasta_sink, sep=';', index=False)
     
     pasta_sink = os.path.abspath(os.path.join(pasta_raiz, '..', '..', 'data', 'silver', 'MotivoViagens', 'motivo_viagens.csv'))
     motivo_viagens.to_csv(pasta_sink, sep=';', index=False)
