@@ -1,5 +1,10 @@
-import pandas as pd 
 import os
+import sys
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
+
+from utils.parse_float import parse_float
+import pandas as pd 
+
 
 def main_etl():
 # EXTRACT
@@ -12,7 +17,7 @@ def main_etl():
 
 
 
-# TRANSFORM
+# TRANSFORM        
 
     # ajusta nomes das colunas
     df.columns = df.columns.str.strip()
@@ -41,9 +46,10 @@ def main_etl():
 
     df_long['nacionalidade'] = parts[1].map(nacionalidade_map).fillna(parts[1].str.capitalize())
     df_long['sexo'] = parts[2].map(sexo_map).fillna(parts[2].str.capitalize())
+    df_long['hospedes'] = df_long['hospedes'].map(parse_float)
     
     # ajusta ordenacao
-    demanda_sexo = df_long[['ano', 'sexo', 'nacionalidade', 'hospedes']]
+    demanda_sexo = df_long[['ano', 'nacionalidade', 'sexo', 'hospedes']]
     demanda_sexo = demanda_sexo.sort_values(by=['ano', 'sexo', 'nacionalidade']).reset_index(drop=True)
     
 

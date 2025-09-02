@@ -1,5 +1,9 @@
-import pandas as pd 
 import os
+import sys
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
+
+from utils.parse_float import parse_float
+import pandas as pd 
 
 def main_etl():
 # EXTRACT
@@ -48,6 +52,7 @@ def main_etl():
 
     df_long['nacionalidade'] = parts[1].map(nacionalidade_map).fillna(parts[1].str.capitalize())
     df_long['motivo'] = parts[2].map(motivo_map).fillna(parts[2].str.capitalize())
+    df_long['hospedes'] = df_long['hospedes'].map(parse_float)
     
     # ajusta ordenacao
     motivo_viagens = df_long[['ano', 'nacionalidade', 'motivo', 'hospedes']]
