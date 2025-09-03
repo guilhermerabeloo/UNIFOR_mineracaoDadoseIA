@@ -1,5 +1,9 @@
-import pandas as pd 
 import os
+import sys
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
+
+from utils.parse_float import parse_float
+import pandas as pd 
 
 def main_etl():
 # EXTRACT
@@ -18,7 +22,7 @@ def main_etl():
     df_ceara = df[df['uf'] == 'Ceará'].reset_index(drop=True)
     
     chegadas_turistas = df_ceara[['data', 'ano', 'mes', 'continente', 'pais', 'uf', 'chegadas']]
-
+    chegadas_turistas['chegadas'] = chegadas_turistas['chegadas'].map(parse_float)
 
 
 # LOAD

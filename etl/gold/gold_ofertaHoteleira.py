@@ -1,5 +1,9 @@
-import pandas as pd 
 import os
+import sys
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
+
+from utils.parse_float import parse_float
+import pandas as pd 
 
 def main_etl():
 # EXTRACT
@@ -14,6 +18,9 @@ def main_etl():
 
 # TRANSFORM
 
+    oferta_hoteleira['estabelecimentos'] = oferta_hoteleira['estabelecimentos'].map(parse_float)
+    oferta_hoteleira['leitos'] = oferta_hoteleira['leitos'].map(parse_float)
+    oferta_hoteleira['unidades_habitacionais'] = oferta_hoteleira['unidades_habitacionais'].map(parse_float)
 
 
 # LOAD

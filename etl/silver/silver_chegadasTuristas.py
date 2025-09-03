@@ -7,27 +7,20 @@ def main_etl():
     pasta_source = os.path.join(pasta_raiz, '..', '..', 'data', 'raw', 'ChegadaTuristasInternacionais')
 
     dfs_fechados = []
-    dfs_acumulados = []
     for arquivo in os.listdir(pasta_source):
-        if arquivo.endswith('.csv') and 'acum' not in arquivo:
+        if arquivo.endswith('.csv'):
             caminho_arquivo = os.path.join(pasta_source, arquivo)
             
             df = pd.read_csv(caminho_arquivo, sep=';')
             
             dfs_fechados.append(df)
-        
-        elif arquivo.endswith('.csv') and 'acum' in arquivo:
-            caminho_arquivo = os.path.join(pasta_source, arquivo)
-            
-            df = pd.read_csv(caminho_arquivo, sep=';')
-            
-            dfs_acumulados.append(df)
+    
             
             
 # TRANSFORM
     # Tratando arquivos no padrao de daos fechados
-    chegadas_turistas_fechados = pd.concat(dfs_fechados, ignore_index=True)
-    chegadas_turistas_fechados = chegadas_turistas_fechados.rename(columns={
+    chegadas_turistas = pd.concat(dfs_fechados, ignore_index=True)
+    chegadas_turistas = chegadas_turistas.rename(columns={
         'Continente': 'continente',
         'cod continente': 'cod_continente',
         'País': 'pais',
@@ -41,26 +34,8 @@ def main_etl():
         'cod mes': 'cod_mes',
         'Chegadas': 'chegadas'
     })
-
-    # Tratando arquivos no padrao de daos acumulados
-    chegadas_turistas_acumulados = pd.concat(dfs_acumulados, ignore_index=True)
-    chegadas_turistas_acumulados = chegadas_turistas_acumulados.rename(columns={
-                'Via_de_acesso': 'via',
-                'UF': 'uf',
-                'nome_pais_correto': 'pais',
-                'mes': 'mes',   
-                'ano': 'ano',
-                'Chegadas': 'chegadas'
-            })
-
-        # Adicionando coluna continente aos dados acumulados
-    map_continente = chegadas_turistas_fechados[['continente', 'pais']].drop_duplicates()
-    chegadas_turistas_acumulados = chegadas_turistas_acumulados.merge(map_continente, on='pais', how='left')
-
-    # Tratando df final
-    chegadas_turistas = pd.concat([chegadas_turistas_fechados, chegadas_turistas_acumulados], ignore_index=True)
-
-        # Adicionando coluna de data
+    
+    # Adicionando coluna de data
     map_meses = {
         'janeiro': 1,
         'fevereiro': 2,
@@ -78,7 +53,7 @@ def main_etl():
     chegadas_turistas['num_mes'] = chegadas_turistas['mes'].map(lambda x: map_meses.get(x.lower(), None))
     chegadas_turistas['data'] = pd.to_datetime(dict(year=chegadas_turistas['ano'], month=chegadas_turistas['num_mes'], day=1))
 
-        # Mantendo apenas as colunas necessarias
+    # Mantendo apenas as colunas necessarias
     chegadas_turistas = chegadas_turistas.drop(columns=['cod_continente', 'cod_pais', 'cod_uf', 'cod_mes', 'num_mes'])
 
 

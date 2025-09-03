@@ -1,5 +1,9 @@
-import pandas as pd 
 import os
+import sys
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
+
+from utils.parse_float import parse_float
+import pandas as pd 
 
 def main_etl():
 # EXTRACT
@@ -73,6 +77,8 @@ def main_etl():
     
     df_long['tipo_hospedagem'] = parts[1].map(tipo_hospedagem_map).fillna(parts[1].str.capitalize())
     df_long['mes'] = parts[2].map(mes_map).fillna(parts[2].str.capitalize())
+    df_long['demanda'] = df_long['demanda'].map(parse_float)
+    
     
     # ajusta ordenacao
     demanda_tipo_hospedagem = df_long[['ano', 'mes', 'tipo_hospedagem', 'demanda']]
@@ -82,14 +88,17 @@ def main_etl():
     demanda_tipo_hospedagem['data'] = pd.to_datetime(demanda_tipo_hospedagem['ano'].astype(str) + '-' + demanda_tipo_hospedagem['mes'].astype(str) + '-01')
     demanda_tipo_hospedagem = demanda_tipo_hospedagem[['data', 'tipo_hospedagem', 'demanda']]
     
-    
+    # soma demanda total
+    demanda = demanda_tipo_hospedagem.groupby('data', as_index=False)['demanda'].sum('demanda').reset_index(drop=True)
+
+
     
 # LOAD
 
     pasta_sink = os.path.join(pasta_raiz, '..', '..', 'data', 'gold', 'DemandaTipoHospedagem', 'demanda_tipo_hospedagem.csv')
     pasta_sink = os.path.abspath(pasta_sink)
     
-    demanda_tipo_hospedagem.to_csv(pasta_sink, sep=';', index=False)
+    demanda.to_csv(pasta_sink, sep=';', index=False)
 
 
 if __name__ == "__main__":
